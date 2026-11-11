@@ -10,7 +10,7 @@ X = np.array([
 ], dtype=float)
 
 # Visualización ordenada de los resultados
-print("1 --- MATRIZ ORIGINAL X (5x3) ---")
+print("🍅1 --- MATRIZ ORIGINAL X (5x3) ---")
 print(X)
 
 # Dimensiones: n filas (sujetos), p columnas (variables)
@@ -77,3 +77,16 @@ R = D_s_inv @ S @ D_s_inv
 
 print("\n11 --- MATRIZ DE CORRELACIONES DE PEARSON (R) ---")
 print(np.round(R, decimals= 4))
+
+# 12. Matriz de Ángulos en Radianes (Arco Coseno elemento a elemento)
+# Nota: np.clip evita advertencias por errores mínimos de redondeo numérico fuera de [-1, 1]
+angulos_radianes = np.arccos(np.clip(R, -1.0, 1.0))
+
+print("\n12 --- MATRIZ DE ÁNGULOS EN RADIANES: arccos(R) ---")
+print(np.round(angulos_radianes, decimals=4))
+
+# 13. Matriz de Ángulos en Grados Sexagesimales (°)
+angulos_grados = np.degrees(angulos_radianes)
+
+print("\n13 --- MATRIZ DE ÁNGULOS EN GRADOS (°): theta = arccos(R) ---")
+print(np.round(angulos_grados, decimals=2))

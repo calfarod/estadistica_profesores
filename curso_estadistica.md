@@ -582,7 +582,7 @@ La traza es la suma de los elementos de la diagonal principal:
 
 ---
 
-### 3. Matriz Definida Positiva y el Determinante ($|\mathbf{R}|$)
+### 3. Matriz Definida Positiva y el Determinante ($|\mathbf{R}|$ = det(R))
 
 Una matriz simétrica $\mathbf{A}$ de orden $p \times p$ es **definida positiva** si para cualquier vector no nulo $\mathbf{v} \ne \mathbf{0}$ se cumple:
 
@@ -613,7 +613,7 @@ Desarrollando los términos intermedios:
 Sumando algebraicamente:
 
 $$
-|\mathbf{R}| = 0.67304 - 0.20362 - 0.38463 = 0.08479 \approx 0.085
+|\mathbf{R}| = det(R) = 0.67304 - 0.20362 - 0.38463 = 0.08479 \approx 0.085
 $$
 
 ---
@@ -631,13 +631,19 @@ Matriz Identidad (I)               Asociación Adecuada                Matriz Si
 - AFE / AFC NO es viable                                              - Falla el algoritmo
 ```
 
-| Escenario | Magnitud de $|\mathbf{R}|$ | Geometría Vectorial | Consecuencia en AFE / AFC |
+| Escenario | Magnitud de det(R) | Geometría Vectorial | Consecuencia en AFE / AFC |
 | :--- | :---: | :--- | :--- |
-| **Ortogonalidad pura** | $|\mathbf{R}| = 1$ | Vectores perpendiculares entre sí a $90^\circ$. | $\mathbf{R} = \mathbf{I}$. No existe varianza común compartida; el análisis factorial carece de sentido. |
-| **Espacio intermedio óptimo** | $0 < |\mathbf{R}| \ll 1$ | Los vectores forman haces angulares cerrados. | Estructura correlacional compartida. Factorizable. (Nuestro valor $|\mathbf{R}| \approx 0.085$ encaja aquí). |
-| **Singularidad / Multicolinealidad** | $|\mathbf{R}| \le 0$ | Al menos un vector es combinación lineal exacta de los demás. | El hipervolumen colapsa a 0. La matriz no es invertible; los estimadores por Máxima Verosimilitud (ML) y MCO fallan (división por cero al calcular $\mathbf{R}^{-1}$ o $\mathbf{S}^{-1}$). |
+| **Ortogonalidad pura** | det(R) = 1 | Vectores perpendiculares entre sí a 90° | det(R) = I :. No existe varianza común compartida; el análisis AFE AFC carece de sentido. |
+| **Espacio intermedio óptimo** | 0 < det(R) << 1 | Los vectores forman haces angulares cerrados. | Estructura correlacional compartida. Factorizable. (Nuestro valor det(R) approx 0.085 encaja aquí). |
+| **Singularidad / Multicolinealidad** | det(R) <= 0 | Al menos un vector es combinación lineal exacta de los demás. | El hipervolumen colapsa a 0. La matriz no es invertible; los estimadores por Máxima Verosimilitud (ML) y MCO fallan (división por cero al calcular inv(R) o inv(S). |
 
-En el siguiente módulo (Módulo 4), veremos cómo la prueba de esfericidad de Bartlett contrasta formalmente la hipótesis nula $H_0: |\mathbf{R}| = 1$ frente a $H_1: |\mathbf{R}| < 1$, y cómo este determinante es el corazón de los algoritmos de estimación factorial.
+En el siguiente módulo (Módulo 4), veremos cómo la prueba de esfericidad de Bartlett contrasta formalmente la 
+
+  hipótesis nula $H_0: |\mathbf{R}| = 1$ 
+  
+  frente a $H_1: |\mathbf{R}| < 1$
+  
+Veremos cómo este determinante es el corazón de los algoritmos de estimación factorial.
 
 ---
 
